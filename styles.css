@@ -1,5 +1,35 @@
 body {
     text-align: center;
     background-color: dimgray;
-    
+
+}
+
+#header {
+    background-color: beige;
+}
+
+#content-area {
+    background-color: azure;
+    display: flex;
+}
+
+#controls-container {
+    width: 200px;
+}
+
+#grid-container {
+    width: 550px;
+    height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: none;
+}
+
+.grid-box {
+    background-color: bisque;
+}
+
+.grid-box:hover {
+    background-color: beige;
+    cursor: crosshair;
 }
