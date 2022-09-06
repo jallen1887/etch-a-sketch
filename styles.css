@@ -11,10 +11,12 @@ body {
 #content-area {
     background-color: azure;
     display: flex;
+    justify-content: center;
 }
 
 #controls-container {
     width: 200px;
+    border: 2px solid black;
 }
 
 #grid-container {
