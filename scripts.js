@@ -12,12 +12,23 @@ function createGrid(gridBoxNumber) {
         gridBox.addEventListener('mouseover', changeColor);
         
     }
-
-
 }
+
+function getRandomRGB() {
+    return Math.floor(Math.random() * 256);
+}
+
 function changeColor(e) {
-        e.target.style.backgroundColor = 'blue';
-    
+    const rainbowCheck = document.querySelector('#rainbow');
+
+    if (rainbowCheck.checked) {
+        e.target.style.backgroundColor = `rgb(${getRandomRGB()},
+                                              ${getRandomRGB()},
+                                              ${getRandomRGB()})`;
+    }
+    else {
+        e.target.style.backgroundColor = 'black';
+    }
 }
 
 function findGridBoxSize(gridBoxNumber){
@@ -37,11 +48,14 @@ function removeGrid() {
 
 const slider = document.querySelector('#grid-slider');
 let output = document.querySelector('#grid-size-text');
+
 output.textContent = `${slider.value} x ${slider.value}`;
 createGrid(slider.value);
+
 slider.oninput = function() {
     output.textContent = `${this.value} x ${this.value}`;
 }
+
 slider.onchange = function() {
     removeGrid();
     createGrid(this.value);
