@@ -18,16 +18,45 @@ function getRandomRGB() {
     return Math.floor(Math.random() * 256);
 }
 
+function rgbToInt(rgb) {
+    let rgbString = rgb.substring(4, rgb.length-1)
+                       .replace(/ /g, '')
+                       .split(',');
+    let rgbInt = [Number(rgbString[0]),
+                  Number(rgbString[1]),
+                  Number(rgbString[2])];
+    return rgbInt;
+}
+
 function changeColor(e) {
     const rainbowCheck = document.querySelector('#rainbow');
+    const greyscaleCheck = document.querySelector('#greyscale');
 
-    if (rainbowCheck.checked) {
-        e.target.style.backgroundColor = `rgb(${getRandomRGB()},
-                                              ${getRandomRGB()},
-                                              ${getRandomRGB()})`;
+    if (e.target.style.backgroundColor == '') {
+
+        if (rainbowCheck.checked) {
+            e.target.style.backgroundColor = `rgb(${getRandomRGB()},
+                                                  ${getRandomRGB()},
+                                                  ${getRandomRGB()})`;
+        }
+        else if (greyscaleCheck.checked) {
+            e.target.style.backgroundColor = `rgb(240,240,240)`;
+        }
+        else {
+            e.target.style.backgroundColor = 'black';
+        }
     }
     else {
-        e.target.style.backgroundColor = 'black';
+        if (greyscaleCheck.checked) {
+            let rgb = rgbToInt(e.target.style.backgroundColor);
+            rgb[0] = Math.max(rgb[0]*0.9, 0);
+            rgb[1] = Math.max(rgb[1]*0.9, 0);
+            rgb[2] = Math.max(rgb[2]*0.9, 0);
+            e.target.style.backgroundColor = `rgb(${rgb[0]},
+                                                  ${rgb[1]},
+                                                  ${rgb[2]})`;
+        }
+        
     }
 }
 
